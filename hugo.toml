@@ -1,4 +1,4 @@
-baseurl = "https://hentilix.netlify.app"
+baseURL = "https://hentilix.netlify.app/"
 DefaultContentLanguage = "zh-cn"
 title = "𝄇"
 # Using theme as git submodule
@@ -22,8 +22,8 @@ pygmentsCodefencesGuessSyntax = true
 #  homeTitle = "𝄇" # Set a different text for the header on the home page
   subtitle = "狂奔直到暴雨之底。"
   mainSections = ["post","posts"]
-  logo = "img/new-avatar-icon.png" # Expecting square dimensions
-  favicon = "img/new-favicon.ico"
+  logo = "/img/new-avatar-icon.png" # Expecting square dimensions
+  favicon = "/img/new-favicon.ico"
   dateFormat = "January 2, 2006"
   commit = false
   rss = true
