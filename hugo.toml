@@ -1,6 +1,6 @@
 baseURL = "https://hentilix.netlify.app/"
 DefaultContentLanguage = "zh-cn"
-title = "𝄇"
+title = "𝄇|Hentilix's Blog"
 # Using theme as git submodule
 theme = "beautifulhugo"
 # Or when using theme as hugo module
@@ -19,7 +19,7 @@ pygmentsCodefencesGuessSyntax = true
     # id = "XXX"
 
 [Params]
-#  homeTitle = "𝄇" # Set a different text for the header on the home page
+#  homeTitle = "𝄇|Hentilix's Blog" # Set a different text for the header on the home page
   subtitle = "狂奔直到暴雨之底。"
   mainSections = ["post","posts"]
   logo = "/img/new-avatar-icon.png" # Expecting square dimensions

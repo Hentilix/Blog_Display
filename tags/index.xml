@@ -1,56 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 𝄇</title>
+    <title>Tags on 𝄇|Hentilix&#39;s Blog</title>
     <link>https://hentilix.netlify.app/tags/</link>
-    <description>Recent content in Tags on 𝄇</description>
+    <description>Recent content in Tags on 𝄇|Hentilix&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
     <managingEditor>hentilixrivery@outlook.com (Hentilix Rivery)</managingEditor>
     <webMaster>hentilixrivery@outlook.com (Hentilix Rivery)</webMaster>
-    <lastBuildDate>Mon, 20 Mar 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hentilix.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Example</title>
-      <link>https://hentilix.netlify.app/tags/example/</link>
-      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate><author>hentilixrivery@outlook.com (Hentilix Rivery)</author>
-      <guid>https://hentilix.netlify.app/tags/example/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Photoswipe</title>
-      <link>https://hentilix.netlify.app/tags/photoswipe/</link>
-      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate><author>hentilixrivery@outlook.com (Hentilix Rivery)</author>
-      <guid>https://hentilix.netlify.app/tags/photoswipe/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Bigimg</title>
-      <link>https://hentilix.netlify.app/tags/bigimg/</link>
-      <pubDate>Tue, 07 Mar 2017 00:00:00 +0000</pubDate><author>hentilixrivery@outlook.com (Hentilix Rivery)</author>
-      <guid>https://hentilix.netlify.app/tags/bigimg/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Math</title>
-      <link>https://hentilix.netlify.app/tags/math/</link>
-      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate><author>hentilixrivery@outlook.com (Hentilix Rivery)</author>
-      <guid>https://hentilix.netlify.app/tags/math/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Code</title>
-      <link>https://hentilix.netlify.app/tags/code/</link>
-      <pubDate>Tue, 08 Mar 2016 00:00:00 +0000</pubDate><author>hentilixrivery@outlook.com (Hentilix Rivery)</author>
-      <guid>https://hentilix.netlify.app/tags/code/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Markdown</title>
-      <link>https://hentilix.netlify.app/tags/markdown/</link>
-      <pubDate>Fri, 20 Feb 2015 00:00:00 +0000</pubDate><author>hentilixrivery@outlook.com (Hentilix Rivery)</author>
-      <guid>https://hentilix.netlify.app/tags/markdown/</guid>
-      <description></description>
-    </item>
   </channel>
 </rss>
