@@ -6,10 +6,12 @@
   </url><url>
     <loc>https://hentilix.netlify.app/categories/</loc>
   </url><url>
-    <loc>https://hentilix.netlify.app/</loc>
-  </url><url>
     <loc>https://hentilix.netlify.app/page/</loc>
   </url><url>
     <loc>https://hentilix.netlify.app/tags/</loc>
+  </url><url>
+    <loc>https://hentilix.netlify.app/</loc>
+  </url><url>
+    <loc>https://hentilix.netlify.app/page/message/</loc>
   </url>
 </urlset>
