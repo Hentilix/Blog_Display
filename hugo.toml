@@ -1,6 +1,6 @@
 baseURL = "https://hentilix.netlify.app/"
 DefaultContentLanguage = "zh-cn"
-title = "荒原|Hentilix's Blog'"
+title = "荒原|Hentilix's Blog"
 # Using theme as git submodule
 theme = "beautifulhugo"
 # Or when using theme as hugo module
@@ -60,7 +60,7 @@ pygmentsCodefencesGuessSyntax = true
   #github = "Hentilix"
   #gitlab = "username"
   #bitbucket = "username"
-  twitter = "Karmiator"
+  #twitter = "Karmiator"
   #reddit = "username"
   #linkedin = "username"
   #xing = "username"
@@ -108,7 +108,7 @@ pygmentsCodefencesGuessSyntax = true
 [[menu.main]]
     parent = "contact"
     name = "Email"
-    url = "hentilixrivery@outlook.com"
+    url = "mailto:hentilixrivery@outlook.com"
     weight = 1
 
 [[menu.main]]
