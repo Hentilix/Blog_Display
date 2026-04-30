@@ -1,6 +1,6 @@
 baseURL = "https://hentilix.netlify.app/"
 DefaultContentLanguage = "zh-cn"
-title = "To See the Next Part of the Dream"
+title = "In the Court of Hentilix Rivery"
 # Using theme as git submodule
 theme = "beautifulhugo"
 # Or when using theme as hugo module
