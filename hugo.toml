@@ -130,6 +130,6 @@ pygmentsCodefencesGuessSyntax = true
     weight = 4
 
 [[menu.main]]
-    name = "留言版"
+    name = "留言板"
     url = "page/message/"
     weight = 4
