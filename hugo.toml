@@ -24,7 +24,7 @@ pygmentsCodefencesGuessSyntax = true
   mainSections = ["post","posts"]
   logo = "/img/new-avatar-icon.png" # Expecting square dimensions
   favicon = "/img/new-favicon.ico"
-  dateFormat = "January 2, 2006"
+  dateFormat = "2006年01月02日"
   commit = false
   rss = true
   comments = true
@@ -119,7 +119,7 @@ pygmentsCodefencesGuessSyntax = true
 
 [[menu.main]]
     parent = "contact"
-    name = "X"
+    name = "X/Twitter"
     url = "https://x.com/karmiator"
     weight = 3
 
