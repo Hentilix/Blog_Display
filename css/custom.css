@@ -1,0 +1,24 @@
+/* Extend serif font stack with Noto Music for musical symbols */
+body {
+  font-family: 'Lora', 'Times New Roman', 'Noto Music', serif;
+}
+
+/* Extend sans-serif font stack for all text elements that override body */
+h1, h2, h3, h4, h5, h6,
+.navbar-custom,
+.navbar-custom .navbar-brand,
+.navbar-custom .nav li a,
+.navbar-custom .nav .navlinks-container .navlinks-children a,
+footer .copyright,
+footer div.disclaimer,
+.post-preview .post-entry,
+.blog-tags,
+.pager li a,
+.intro-header .page-heading .page-subheading,
+.intro-header .post-heading .post-subheading,
+.intro-header.big-img .img-desc,
+.main-explain-area,
+div.panel-body a.list-group-item,
+.disqus-comments button {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, 'Noto Music', sans-serif;
+}
