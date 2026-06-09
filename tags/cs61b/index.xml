@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CS61B on 𝄇|Hentilix's Blog</title><link>https://hentilix.pages.dev/tags/cs61b/</link><description>Recent content in CS61B on 𝄇|Hentilix's Blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 26 May 2026 14:46:11 +0800</lastBuildDate><atom:link href="https://hentilix.pages.dev/tags/cs61b/index.xml" rel="self" type="application/rss+xml"/><item><title>UCB CS61B sp25 学习笔记一：Lec1 ~ Lec10 Java语法与面向对象基础</title><link>https://hentilix.pages.dev/post/008-ucb-cs61b-notes-lec1-lec10-java-syntax-and-oop/</link><pubDate>Tue, 26 May 2026 14:46:11 +0800</pubDate><guid>https://hentilix.pages.dev/post/008-ucb-cs61b-notes-lec1-lec10-java-syntax-and-oop/</guid><description>&lt;h4 id="目录"&gt;目录&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#lec1"&gt;Lecture 1 - Intro to 61B&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec2"&gt;Lecture 2 - Defining and Using Classes, Lists and Maps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec3"&gt;Lecture 3 - References, Recursion, IntLists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec4"&gt;Lecture 4 - Lists II SLLists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec5"&gt;Lecture 5 - Lists III DLLists And Arrays&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec6"&gt;Lecture 6 - Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec7"&gt;Lecture 7 - ArrayLists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec8"&gt;Lecture 8 - Interface and Implementation Inheritance&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec9"&gt;Lecture 9 - Subtype Polymorphism, Function Passing, Generic Functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#lec10"&gt;Lecture 10 - Iterators, Object Methods&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#summary"&gt;个人感想及总结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>
