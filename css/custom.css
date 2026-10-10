@@ -248,6 +248,11 @@ html[data-theme] .intro-header:not(.big-img) .categories-heading {
   box-shadow: var(--shadow);
 }
 
+.intro-header .page-heading h1,
+.intro-header .tags-heading h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
