@@ -2,6 +2,13 @@
   const root = document.documentElement;
   const themeButton = document.getElementById("theme-toggle");
   const themeIcon = themeButton?.querySelector(".theme-toggle__icon");
+  const transitionScene = document.getElementById("theme-transition-scene");
+  const transitionStatus = document.getElementById("theme-transition-status");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const transitionDuration = 3400;
+  const themeRevealDelay = 1450;
+  let themeTransitioning = false;
 
   function syncGiscusTheme(theme) {
     const frame = document.querySelector("iframe.giscus-frame");
@@ -40,7 +47,50 @@
 
   applyTheme(root.dataset.theme);
   themeButton?.addEventListener("click", () => {
-    applyTheme(root.dataset.theme === "dark" ? "light" : "dark", true);
+    if (themeTransitioning) return;
+
+    const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+    if (reducedMotion.matches || !transitionScene || !transitionStatus) {
+      applyTheme(nextTheme, true);
+      return;
+    }
+
+    themeTransitioning = true;
+    const restoreThemeButtonFocus = document.activeElement === themeButton;
+    const inertElements = Array.from(document.body.children)
+      .filter((element) => element !== transitionScene && element !== transitionStatus)
+      .map((element) => ({ element, wasInert: element.inert }));
+
+    inertElements.forEach(({ element }) => {
+      element.inert = true;
+    });
+
+    document.body.classList.add("theme-transition-active");
+    transitionScene.dataset.direction = nextTheme;
+    transitionScene.hidden = false;
+    transitionScene.classList.remove("is-running");
+    void transitionScene.offsetWidth;
+    transitionScene.classList.add("is-running");
+    transitionStatus.textContent = nextTheme === "dark" ? "正在切换到黑夜模式。" : "正在切换到白天模式。";
+
+    window.setTimeout(() => {
+      applyTheme(nextTheme, true);
+    }, themeRevealDelay);
+
+    window.setTimeout(() => {
+      transitionScene.classList.remove("is-running");
+      transitionScene.hidden = true;
+      transitionScene.dataset.direction = "";
+      document.body.classList.remove("theme-transition-active");
+
+      inertElements.forEach(({ element, wasInert }) => {
+        element.inert = wasInert;
+      });
+
+      themeTransitioning = false;
+      transitionStatus.textContent = nextTheme === "dark" ? "已切换到黑夜模式。" : "已切换到白天模式。";
+      if (restoreThemeButtonFocus) themeButton.focus({ preventScroll: true });
+    }, transitionDuration + 100);
   });
 
   const giscusScript = document.querySelector("script[src*='giscus.app/client.js']");
@@ -109,8 +159,6 @@
     });
   }
 
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const cursor = document.getElementById("star-cursor");
   const canvas = document.getElementById("star-trail");
   const context = canvas?.getContext("2d");
