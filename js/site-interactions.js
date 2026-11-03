@@ -2,13 +2,10 @@
   const root = document.documentElement;
   const themeButton = document.getElementById("theme-toggle");
   const themeIcon = themeButton?.querySelector(".theme-toggle__icon");
-  const transitionScene = document.getElementById("theme-transition-scene");
   const transitionStatus = document.getElementById("theme-transition-status");
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const transitionDuration = 3400;
-  const themeRevealDelay = 1450;
-  let themeTransitioning = false;
+  let themeTimer = 0;
 
   function syncGiscusTheme(theme) {
     const frame = document.querySelector("iframe.giscus-frame");
@@ -45,54 +42,29 @@
     document.dispatchEvent(new CustomEvent("hentilix:themechange", { detail: { theme: nextTheme } }));
   }
 
+  function finishThemeTransition() {
+    window.clearTimeout(themeTimer);
+    themeTimer = 0;
+    root.classList.remove("theme-changing");
+  }
+
   applyTheme(root.dataset.theme);
   themeButton?.addEventListener("click", () => {
-    if (themeTransitioning) return;
-
     const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
-    if (reducedMotion.matches || !transitionScene || !transitionStatus) {
-      applyTheme(nextTheme, true);
-      return;
+    window.clearTimeout(themeTimer);
+    root.classList.toggle("theme-changing", !reducedMotion.matches);
+    applyTheme(nextTheme, true);
+    if (transitionStatus) {
+      transitionStatus.textContent = nextTheme === "dark" ? "已切换到夜间模式。" : "已切换到白天模式。";
     }
-
-    themeTransitioning = true;
-    const restoreThemeButtonFocus = document.activeElement === themeButton;
-    const inertElements = Array.from(document.body.children)
-      .filter((element) => element !== transitionScene && element !== transitionStatus)
-      .map((element) => ({ element, wasInert: element.inert }));
-
-    inertElements.forEach(({ element }) => {
-      element.inert = true;
-    });
-
-    document.body.classList.add("theme-transition-active");
-    transitionScene.dataset.direction = nextTheme;
-    transitionScene.hidden = false;
-    transitionScene.classList.remove("is-running");
-    void transitionScene.offsetWidth;
-    transitionScene.classList.add("is-running");
-    transitionStatus.textContent = nextTheme === "dark" ? "正在切换到黑夜模式。" : "正在切换到白天模式。";
-
-    window.setTimeout(() => {
-      applyTheme(nextTheme, true);
-    }, themeRevealDelay);
-
-    window.setTimeout(() => {
-      transitionScene.classList.remove("is-running");
-      transitionScene.hidden = true;
-      transitionScene.dataset.direction = "";
-      document.body.classList.remove("theme-transition-active");
-
-      inertElements.forEach(({ element, wasInert }) => {
-        element.inert = wasInert;
-      });
-
-      themeTransitioning = false;
-      transitionStatus.textContent = nextTheme === "dark" ? "已切换到黑夜模式。" : "已切换到白天模式。";
-      if (restoreThemeButtonFocus) themeButton.focus({ preventScroll: true });
-    }, transitionDuration + 100);
+    if (!reducedMotion.matches) themeTimer = window.setTimeout(finishThemeTransition, 950);
   });
-
+  reducedMotion.addEventListener("change", () => {
+    if (reducedMotion.matches) finishThemeTransition();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) finishThemeTransition();
+  });
   const giscusScript = document.querySelector("script[src*='giscus.app/client.js']");
   const giscusFrame = document.querySelector("iframe.giscus-frame");
   if (giscusScript && giscusFrame) {
@@ -163,9 +135,9 @@
   const canvas = document.getElementById("star-trail");
   const context = canvas?.getContext("2d");
 
-  if (!finePointer.matches || reducedMotion.matches || !cursor || !canvas || !context) return;
+  if (!cursor || !canvas || !context) return;
 
-  document.body.classList.add("custom-cursor-active");
+  document.body.classList.toggle("custom-cursor-active", finePointer.matches && !reducedMotion.matches);
 
   let width = 0;
   let height = 0;
@@ -246,9 +218,23 @@
 
   resizeCanvas();
   window.addEventListener("resize", resizeCanvas, { passive: true });
+  function syncCursorMotion() {
+    const enabled = finePointer.matches && !reducedMotion.matches && !document.hidden;
+    document.body.classList.toggle("custom-cursor-active", enabled);
+    if (!enabled) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+      stars.length = 0;
+      context.clearRect(0, 0, width, height);
+      cursor.classList.remove("is-visible", "is-interactive");
+    }
+  }
+  reducedMotion.addEventListener("change", syncCursorMotion);
+  finePointer.addEventListener("change", syncCursorMotion);
+  document.addEventListener("visibilitychange", syncCursorMotion);
 
   window.addEventListener("pointermove", (event) => {
-    if (event.pointerType !== "mouse") return;
+    if (event.pointerType !== "mouse" || reducedMotion.matches || !finePointer.matches || document.hidden) return;
 
     const target = event.target instanceof Element ? event.target : null;
     if (target?.closest(textEntrySelector)) {

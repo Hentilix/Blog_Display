@@ -1,0 +1,21 @@
+Asset: rain-landscape.jpg
+Created: 2026-11-01
+Generator: OpenAI built-in image_gen tool; no CLI/API fallback.
+Intent: Original generated photographic landscape for the approved Hentilix Hugo editorial blog redesign.
+Source: C:/Users/Henti/.codex/generated_images/01a1967b-907b-7af2-bac7-5f77d8ad9d4c/exec-d1c10272-2a94-4292-94c0-8b72f16ee287.png
+Output: E:/Blog/hentilix/static/img/rain-landscape.jpg
+Postprocessing: Encoded to JPEG at quality 92 with Windows System.Drawing. No compositing, cropping, retouching, color changes or other content edits. Original generated PNG retained in the source location.
+Visual verification: Inspected generated image with view_image; cool dark teal rain lake, distant mountain layers and mist, a single sculptural rock on the right, open left area, no text or people.
+
+Exact generation prompt:
+
+Use case: photorealistic-natural
+Asset type: original cinematic landscape photograph, background asset for a premium editorial personal blog, not a UI mockup.
+Primary request: A vast, calm, deep dark teal lake in rainfall, misty mountain silhouettes spanning a distant low horizon, a single beautiful sculptural wet rock emerging from the water on the RIGHT third. Quiet, atmospheric, evocative, serene.
+Style/medium: High-quality fine-art landscape photography. Convincing real photographic surfaces and natural optical softness, nuanced detail, no illustration.
+Composition/framing: Wide landscape 16:9 frame. Low viewpoint just above the lake water, subtle foreground water ripples and rain dimples. The sculptural weathered stone occupies the lower-right third and gives the image a memorable focus; distant mountain layers dissolve into luminous mist. Keep the LEFT half open and visually quiet with subdued lake and mist, useful negative space behind a large editorial headline that will be added later.
+Lighting/mood: Cool silver light diffused by rainy cloud, atmospheric depth, delicate reflections, sophisticated restrained contrast, a peaceful storm.
+Color palette: Almost monochrome muted sage and dark teal, silver gray mist, no saturated colors.
+Materials/textures: Wet irregular dark slate rock with beautiful mineral detail and subtle highlights; fine realistic ripples, tiny rain impacts across the water, delicate rain haze.
+Constraints: A real beautiful photographic landscape only. No text, letters, typography, people, buildings, boats, UI, frames, logos, watermarks, or fantastical glowing blobs. Do not render the blog headline.
+
