@@ -27,7 +27,7 @@
       themeButton.setAttribute("aria-pressed", String(isDark));
       themeButton.setAttribute("aria-label", label);
       themeButton.title = label;
-      if (themeIcon) themeIcon.textContent = isDark ? "☀" : "☾";
+      if (themeIcon) themeIcon.textContent = isDark ? "☾" : "☀";
     }
 
     if (persist) {
