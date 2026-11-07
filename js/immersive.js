@@ -72,7 +72,7 @@
   let width = 0, height = 0, frame = 0, previousTime = 0;
   let pointerX = 0, pointerY = 0, lensIndex = 0, lastWake = -Infinity;
   let lastWakeX = null, lastWakeY = null;
-  let smoothX = 0, smoothY = 0, lastRipple = 0;
+  let smoothX = 0, smoothY = 0, rippleElapsed = 0;
   let drops = [], rings = [];
   let dark = root.dataset.theme === 'dark';
   const randomDrop = () => ({ x: Math.random() * width, y: Math.random() * height, depth: .3 + Math.random() * .7 });
@@ -81,7 +81,7 @@
     const ratio = Math.min(devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    drops = Array.from({ length: width < 600 ? 32 : 85 }, randomDrop);
+    drops = Array.from({ length: width < 600 ? 18 : 48 }, randomDrop);
     rings = [];
   }
   function clearWake() {
@@ -113,9 +113,10 @@
   }
   function syncAnimation() {
     cancelAnimationFrame(frame); frame = 0; previousTime = 0;
+    scene.style.setProperty('--mist-play-state', canAnimate() ? 'running' : 'paused');
     if (canAnimate()) frame = requestAnimationFrame(draw);
     else {
-      clearWake(); leavePointer(); rings = [];
+      clearWake(); leavePointer(); rings = []; rippleElapsed = 0;
       ctx.clearRect(0, 0, width, height);
       scene.style.setProperty('--scene-x', '0px'); scene.style.setProperty('--scene-y', '0px');
       if (reducedMotion.matches) scene.style.setProperty('--scene-scale', '1');
@@ -132,24 +133,26 @@
     scene.style.setProperty('--scene-y', `${smoothY * 5}px`);
     ctx.lineWidth = .7;
     for (const drop of drops) {
-      const speed = 270 + drop.depth * 450;
+      const speed = 110 + drop.depth * 150;
       drop.y += speed * dt; drop.x += (12 + smoothX * 32) * dt;
       if (drop.y > height + 30) { drop.y = -30; drop.x = Math.random() * width; }
       if (drop.x > width) drop.x = 0;
-      ctx.strokeStyle = `rgba(${dark ? '200,230,218' : '35,73,62'},${.07 + drop.depth * .12})`;
+      ctx.strokeStyle = `rgba(${dark ? '200,230,218' : '35,73,62'},${.035 + drop.depth * .07})`;
       ctx.beginPath(); ctx.moveTo(drop.x, drop.y);
-      ctx.lineTo(drop.x + 2 + smoothX * 3, drop.y + 12 + drop.depth * 22); ctx.stroke();
+      ctx.lineTo(drop.x + 2 + smoothX * 3, drop.y + 8 + drop.depth * 14); ctx.stroke();
     }
-    if (time - lastRipple > 550) {
-      rings.push({ x: Math.random() * width, y: height * (.64 + Math.random() * .32), age: 0 });
-      lastRipple = time;
+    // Ambient water moves slowly; the existing pointer wake keeps its immediate response.
+    rippleElapsed += dt;
+    if (rippleElapsed > 1.6) {
+      rings.push({ x: Math.random() * width, y: height * (.68 + Math.random() * .2), age: 0 });
+      rippleElapsed = 0;
     }
-    rings = rings.filter(ring => ring.age < 2);
+    rings = rings.filter(ring => ring.age < (ring.pointer ? 2 : 3.6));
     for (const ring of rings) {
       ring.age += dt;
-      const strength = ring.pointer ? .3 : .16;
-      ctx.strokeStyle = `rgba(${dark ? '190,225,210' : '32,70,59'},${Math.max(0, strength * (1 - ring.age / 2))})`;
-      ctx.beginPath(); ctx.ellipse(ring.x, ring.y, (ring.pointer ? 14 : 4) + ring.age * 30, (ring.pointer ? 6 : 1) + ring.age * (ring.pointer ? 16 : 7), 0, 0, Math.PI * 2); ctx.stroke();
+      const opacity = ring.pointer ? .3 * (1 - ring.age / 2) : .1 * Math.sin(Math.PI * Math.min(ring.age / 3.6, 1));
+      ctx.strokeStyle = `rgba(${dark ? '190,225,210' : '32,70,59'},${Math.max(0, opacity)})`;
+      ctx.beginPath(); ctx.ellipse(ring.x, ring.y, (ring.pointer ? 14 : 4) + ring.age * (ring.pointer ? 30 : 18), (ring.pointer ? 6 : 1) + ring.age * (ring.pointer ? 16 : 4), 0, 0, Math.PI * 2); ctx.stroke();
     }
     frame = requestAnimationFrame(draw);
   }

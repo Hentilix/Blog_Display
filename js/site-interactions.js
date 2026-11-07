@@ -83,6 +83,7 @@
 
   const tabs = Array.from(document.querySelectorAll(".collection-tab"));
   const panels = Array.from(document.querySelectorAll(".collection-panel"));
+  const recentWorks = Array.from(document.querySelectorAll("[data-category-now]"));
 
   if (tabs.length && panels.length) {
     const activateTab = (tab, updateHash = true) => {
@@ -97,8 +98,10 @@
       panels.forEach((panel) => {
         panel.hidden = panel.id !== `collection-panel-${category}`;
       });
+      recentWorks.forEach((line) => { line.hidden = line.dataset.categoryNow !== category; });
 
       if (updateHash) history.replaceState(null, "", `#${category}`);
+      window.dispatchEvent?.(new CustomEvent('collectionchange', {detail: {category}}));
     };
 
     tabs.forEach((tab, index) => {
@@ -125,7 +128,7 @@
     panels.forEach((panel) => {
       const grid = panel.querySelector(".collection-grid");
       if (!grid) return;
-      Array.from(grid.querySelectorAll(".collection-card"))
+      Array.from(grid.querySelectorAll(".collection-entry"))
         .sort((a, b) => collator.compare(a.dataset.title || "", b.dataset.title || ""))
         .forEach((card) => grid.appendChild(card));
     });
